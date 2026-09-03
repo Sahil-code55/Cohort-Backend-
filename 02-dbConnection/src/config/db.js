@@ -2,7 +2,7 @@ const { default: mongoose } = require("mongoose");
 
 const connectDB = async()=>{
    try{ 
-    await mongoose.connect("mongodb+srv://sahusahil553_db_user:wsoA5JK6aUaOPZSR@cluster0.l9eh3xh.mongodb.net/")
+    await mongoose.connect(process.env.mongodb_uri);
     console.log(" MongoDB connected Successfully");  
     }
     catch(error){

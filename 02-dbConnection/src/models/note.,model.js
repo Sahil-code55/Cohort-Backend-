@@ -1,7 +1,7 @@
 const { default: mongoose } = require("mongoose");
 
 
-let notesSchema = new mongoose.create({
+let notesSchema = new mongoose.Schema({
     title :{
         type: String,
         required: true,
