@@ -1,12 +1,25 @@
+import axios from 'axios';
 import React from 'react'
 import { useForm } from 'react-hook-form';
 
 const App = () => {
 const {register , handleSubmit} =   useForm()
 
-const SubmitHandler = (data)=>{
+const SubmitHandler = async(data)=>{
+ 
+ const formData = new FormData();
  console.log(data);
  
+ formData.append("name",data.name);
+ formData.append("email",data.email);
+
+ Array.from(data.images).forEach((images)=>{
+  formData.append("images",images);
+ })
+
+console.log(formData);
+
+await axios.post("http://localhost:3000/user/create",formData)
 
 }
 
@@ -26,8 +39,8 @@ const SubmitHandler = (data)=>{
        className="border border-gray-400 rounded-xl p-2 text-gray-600 hover:border-blue-400" type="text" placeholder=" Enter your email " />
 
       <input 
-       {...register("profilePic")}
-      className="border border-gray-400 rounded-xl p-2 text-gray-600 hover:border-blue-400" type="file" placeholder=" upload your profile pic " />
+       {...register("images")}
+      className="border border-gray-400 rounded-xl p-2 text-gray-600 hover:border-blue-400" type="file" multiple placeholder=" upload your profile pic " />
 
       <input 
       className="px-5 py-3 bg-blue-500 rounded-3xl
