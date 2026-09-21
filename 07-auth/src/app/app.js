@@ -21,6 +21,7 @@ app.post("/api/auth/register", async (req, res) => {
     const token = jwt.sign({
       id : user._id
     },
+    
     // jwt secret 
     process.env.JWT_SECRET
 );
